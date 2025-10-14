@@ -3,13 +3,16 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# CSV and data files
-data/
-*.csv
-
-# Virtual environment
+# Virtual env
 venv/
 .env
 
-# VSCode settings
+# Data files
+data/
+*.csv
+
+# VSCode
 .vscode/
+
+# Misc
+.DS_Store

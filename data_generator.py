@@ -1,3 +1,4 @@
+# data_generator.py
 import pandas as pd
 import numpy as np
 from datetime import date, timedelta
@@ -15,19 +16,26 @@ def generate_sales_data(sale_date, num_rows=500):
         'customer_id': customer_ids,
         'amount': amounts
     })
+    # ~5% missing values
     mask_cust = np.random.rand(num_rows) < 0.05
     df.loc[mask_cust, 'customer_id'] = np.nan
     mask_amt = np.random.rand(num_rows) < 0.05
     df.loc[mask_amt, 'amount'] = np.nan
     return df
 
-os.makedirs("data", exist_ok=True)
-start_date = date(2025, 7, 10)
+if __name__ == "__main__":
+    os.makedirs("data", exist_ok=True)
 
-for i in range(7):
-    d = start_date + timedelta(days=i)
-    df_day = generate_sales_data(d, num_rows=500)
-    df_day.to_csv(f"data/daily_sales_{d.isoformat()}.csv", index=False)
+    # Generate one file per day from 2025-07-10 to 2025-07-16
+    start_date = date(2025, 7, 10)
+    for i in range(7):
+        d = start_date + timedelta(days=i)
+        df_day = generate_sales_data(d, num_rows=500)
+        file_path = f"data/daily_sales_{d.isoformat()}.csv"
+        df_day.to_csv(file_path, index=False)
+        print("Written:", file_path)
 
-df_today = generate_sales_data(date(2025, 7, 16), num_rows=500)
-df_today.to_csv("daily_sales.csv", index=False)
+    # create generic daily_sales.csv for single-day loader
+    df_today = generate_sales_data(date(2025, 7, 16), num_rows=500)
+    df_today.to_csv("daily_sales.csv", index=False)
+    print("Written: daily_sales.csv")
