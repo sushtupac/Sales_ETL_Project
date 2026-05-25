@@ -1,19 +1,18 @@
-# Sales ETL Project
+# Sales ETL Pipeline
 
-Simple ETL demo — generates CSV sales files, loads into PostgreSQL, and computes a small analytics table.
+An end-to-end ETL pipeline that generates synthetic sales data, loads it into PostgreSQL, and produces an analytics aggregation layer — packaged with Docker for easy local setup.
 
-# Files
-- `data_generator.py` — produce sample CSV files (in `data/`) and `daily_sales.csv`.
-- `bulk_data_load.py` — load all CSVs into `landing_bulk_sales` and create `sales_analytics`.
-- `weekly_data_load.py` — append new records only; recompute analytics.
-- `daily_sales_load.py` — load single `daily_sales.csv` into `landing_daily_sales`.
-- `docker-compose.yml` — launches PostgreSQL container.
-- `.env.example` — example env file (copy to `.env` and fill values).
-- `.gitignore` — ignore `.env`, data, etc.
+## What This Does
 
-# Setup (local dev)
+- Generates realistic daily and weekly CSV sales data
+- Loads bulk and incremental data into PostgreSQL
+- Computes a sales analytics table for downstream reporting
+- Runs entirely in Docker — no manual database setup needed
 
-1. Clone repo:
-```bash
-git clone https://github.com/sushtupac/Sales_ETL_Project.git
-cd Sales_ETL_Project
+## Tech Stack
+
+- Python (pandas, SQLAlchemy, psycopg2)
+- PostgreSQL
+- Docker / Docker Compose
+
+## Project Structure
