@@ -15,5 +15,5 @@ Simple ETL demo — generates CSV sales files, loads into PostgreSQL, and comput
 
 1. Clone repo:
 ```bash
-git clone https://github.com/YOUR_USERNAME/Sales_ETL_Project.git
+git clone https://github.com/sushtupac/Sales_ETL_Project.git
 cd Sales_ETL_Project
